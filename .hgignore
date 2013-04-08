@@ -1,0 +1,9 @@
+syntax: glob
+*.suo
+*.exe
+*.pdb
+*.manifest
+*.cache
+*.dll
+*.force
+*.tlog
