@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grpPasswordPolicy = new System.Windows.Forms.GroupBox();
+            this.btnVerify = new System.Windows.Forms.Button();
             this.dgvCharacterSets = new System.Windows.Forms.DataGridView();
             this.lblPasswordEntropy = new System.Windows.Forms.Label();
             this.lblPasswordTime = new System.Windows.Forms.Label();
@@ -56,7 +57,7 @@
             this.lblWorkFactor = new System.Windows.Forms.Label();
             this.udnWorkFactor = new System.Windows.Forms.NumericUpDown();
             this.txtPasswordHash = new System.Windows.Forms.TextBox();
-            this.btnVerify = new System.Windows.Forms.Button();
+            this.lblVerify = new System.Windows.Forms.Label();
             this.grpPasswordPolicy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCharacterSets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udnPasswordLengthMaximum)).BeginInit();
@@ -68,6 +69,7 @@
             // 
             // grpPasswordPolicy
             // 
+            this.grpPasswordPolicy.Controls.Add(this.lblVerify);
             this.grpPasswordPolicy.Controls.Add(this.btnVerify);
             this.grpPasswordPolicy.Controls.Add(this.dgvCharacterSets);
             this.grpPasswordPolicy.Controls.Add(this.lblPasswordEntropy);
@@ -87,6 +89,16 @@
             this.grpPasswordPolicy.TabIndex = 0;
             this.grpPasswordPolicy.TabStop = false;
             this.grpPasswordPolicy.Text = "Password Policy";
+            // 
+            // btnVerify
+            // 
+            this.btnVerify.Location = new System.Drawing.Point(153, 303);
+            this.btnVerify.Name = "btnVerify";
+            this.btnVerify.Size = new System.Drawing.Size(123, 23);
+            this.btnVerify.TabIndex = 22;
+            this.btnVerify.Text = "Verify password";
+            this.btnVerify.UseVisualStyleBackColor = true;
+            this.btnVerify.Click += new System.EventHandler(this.PasswordVerify_Click);
             // 
             // dgvCharacterSets
             // 
@@ -409,15 +421,13 @@
             this.txtPasswordHash.TabIndex = 17;
             this.txtPasswordHash.TabStop = false;
             // 
-            // btnVerify
+            // lblVerify
             // 
-            this.btnVerify.Location = new System.Drawing.Point(153, 303);
-            this.btnVerify.Name = "btnVerify";
-            this.btnVerify.Size = new System.Drawing.Size(123, 23);
-            this.btnVerify.TabIndex = 22;
-            this.btnVerify.Text = "Verify password";
-            this.btnVerify.UseVisualStyleBackColor = true;
-            this.btnVerify.Click += new System.EventHandler(this.PasswordVerify_Click);
+            this.lblVerify.AutoSize = true;
+            this.lblVerify.Location = new System.Drawing.Point(299, 308);
+            this.lblVerify.Name = "lblVerify";
+            this.lblVerify.Size = new System.Drawing.Size(0, 13);
+            this.lblVerify.TabIndex = 23;
             // 
             // UtilitiesTester
             // 
@@ -477,5 +487,6 @@
         private System.Windows.Forms.Label lblWholeHash;
         private System.Windows.Forms.Label lblHash;
         private System.Windows.Forms.Button btnVerify;
+        private System.Windows.Forms.Label lblVerify;
     }
 }

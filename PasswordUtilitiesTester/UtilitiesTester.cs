@@ -243,11 +243,11 @@ namespace PasswordUtilitiesTester
         {
             if (PasswordVerifier.PasswordVerify(this.txtPassword.Text, this.txtFullHash.Text))
             {
-                this.btnVerify.ForeColor = SystemColors.ControlText;
+                this.lblVerify.Text = "Verified successfully";
             }
             else
             {
-                this.btnVerify.ForeColor = Color.Red;
+                this.lblVerify.Text = "Verification failed!";
             }
         }
 
@@ -314,7 +314,7 @@ namespace PasswordUtilitiesTester
         {
             if (this.UserEditing)
             {
-                this.btnVerify.ForeColor = SystemColors.ControlText;
+                this.lblVerify.Text = String.Empty;
                 this.txtPasswordSymbols.Text = this.PasswordGen.Policy.AllowedSymbols;
                 this.txtPassword.Text = this.PasswordGen.GeneratePassword();
                 this.lblAttempts.Text = String.Format("Rejected passwords: {" + COMMAS_AND_ZERO_DECIMAL_PLACES + "}", this.PasswordGen.PasswordRejectedCount);
