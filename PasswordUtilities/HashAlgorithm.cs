@@ -15,7 +15,7 @@ namespace PasswordUtilities
     {
         /// <summary>
         /// SHA-1 has a 160-bit (20 bytes) message digest.
-        /// There are some interesting collision attacks 
+        /// There is an interesting collision attack 
         /// against SHA-1, but this has no implication 
         /// for password storage.
         /// </summary>

@@ -145,7 +145,7 @@ namespace PasswordUtilities
                 case HashAlgorithm.Sha1_160:
                     break;
                 case HashAlgorithm.Sha2_256:
-                    throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "SHA2-256 not implemented yet"));
+                    break;
                 case HashAlgorithm.Sha3_512:
                     throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "SHA3-512 not implemented yet"));
                 case HashAlgorithm.Bcrypt_192:

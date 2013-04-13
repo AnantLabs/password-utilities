@@ -23,7 +23,7 @@ namespace PasswordUtilities
 	/// </remarks>
 	public sealed class HashGenerator
 	{
-        private const Int32 SHA1_NUMBER_HASH_BYTES = 20;
+        private const Int32 SHA1_160_HASH_SIZE_IN_BYTES = 20;
         /// <summary>
 		/// Use the default hash policy.
 		/// </summary>
@@ -281,7 +281,7 @@ namespace PasswordUtilities
             Stopwatch timer = TimerStart();
             try
             {
-                this.HashBytes = CreateSaltedHash(this.PasswordBytes, this.SaltBytes, this.Policy.WorkFactor);
+                this.HashBytes = CreateSaltedHash(this.PasswordBytes, this.SaltBytes, this.Policy.WorkFactor, this.Policy.HashMethod);
             }
             finally
             {
@@ -368,15 +368,26 @@ namespace PasswordUtilities
             }
 		}
 
-		// Creates the SHA-1 hash as a specified number of bytes (normally 160 bits),
-        // using a specified password, salt, and number of hash iterations via PBKDF2.
+		// Creates the hash using the specified password, salt, 
+        // and number of hash iterations via PBKDF2.
 		// See http://en.wikipedia.org/wiki/PBKDF2
 		// And http://msdn.microsoft.com/en-us/library/system.security.cryptography.rfc2898derivebytes%28v=VS.100%29.aspx
-		private static byte[] CreateSaltedHash(byte[] password, byte[] salt, Int32 workFactor)
+		private static byte[] CreateSaltedHash(byte[] password, byte[] salt, Int32 workFactor, HashAlgorithm hashMethod)
 		{
-			using (var hashBytes = new Rfc2898DeriveBytes(password, salt, (Int32)Math.Pow(2, workFactor)))
+            switch (hashMethod)
             {
-                return hashBytes.GetBytes(SHA1_NUMBER_HASH_BYTES);
+                case HashAlgorithm.Sha1_160:
+                    return SHA1_160.CreateSaltedHash(password, salt, (Int32)Math.Pow(2, workFactor));
+                case HashAlgorithm.Sha2_256:
+                    return SHA2_256.CreateSaltedHash(password, salt, (Int32)Math.Pow(2, workFactor));
+                case HashAlgorithm.Sha3_512:
+                    throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "SHA3-512 not implemented yet"));
+                case HashAlgorithm.Bcrypt_192:
+                    throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "BCRYPT-192 not implemented yet"));
+                case HashAlgorithm.Scrypt_512:
+                    throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "SCRYPT-512 not implemented yet"));
+                default:
+                    throw new ArgumentOutOfRangeException(String.Format(CultureInfo.InvariantCulture, "Unknown hash algorithm"));
             }
 		}
 
