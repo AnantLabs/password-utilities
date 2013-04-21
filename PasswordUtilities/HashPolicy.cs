@@ -26,7 +26,7 @@ namespace PasswordUtilities
 		// Other class constants.
 		private const int SALT_MINIMUM_BYTES = 8;
 		private const int SALT_DEFAULT_BYTES = 10;
-        private const HashAlgorithm HASH_ALGORITHM_DEFAULT = HashAlgorithm.Sha1_160; 
+        private const HashAlgorithm HASH_ALGORITHM_DEFAULT = HashAlgorithm.SHA1_160; 
         private const StorageFormat HASH_STORAGE_DEFAULT = StorageFormat.Hexadecimal;
         private const string COMMAS_AND_ZERO_DECIMAL_PLACES = "N0";
 
@@ -142,13 +142,13 @@ namespace PasswordUtilities
             // See: http://blogs.msdn.com/b/brada/archive/2003/11/29/50903.aspx 
             switch (this.HashMethod)
             {
-                case HashAlgorithm.Sha1_160:
+                case HashAlgorithm.SHA1_160:
                     break;
-                case HashAlgorithm.Sha2_256:
+                case HashAlgorithm.SHA2_256:
                     break;
-                case HashAlgorithm.Sha3_512:
+                case HashAlgorithm.SHA3_512:
                     throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "SHA3-512 not implemented yet"));
-                case HashAlgorithm.Bcrypt_192:
+                case HashAlgorithm.BCRYPT_192:
                     throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "BCRYPT-192 not implemented yet"));
                 case HashAlgorithm.Scrypt_512:
                     throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "SCRYPT-512 not implemented yet"));

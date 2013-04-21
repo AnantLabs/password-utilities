@@ -27,8 +27,8 @@ namespace PasswordUtilities
             byte[] saltAndIndex = new byte[salt.Length + BLOCK_INDEX];
             Array.Copy(salt, 0, saltAndIndex, 0, salt.Length);
 
-            byte[] output = new byte[BLOCK_COUNT * SHA2_256_HASH_SIZE_IN_BYTES];
-            int outputOffset = 0;
+            byte[] hashOutput = new byte[BLOCK_COUNT * SHA2_256_HASH_SIZE_IN_BYTES];
+            int hashOutputOffset = 0;
 
             SHA256Managed hashInner = new SHA256Managed();
             SHA256Managed hashOuter = new SHA256Managed();
@@ -53,7 +53,7 @@ namespace PasswordUtilities
             // For each block of desired output...
             for (Int32 hashBlock = 0; hashBlock < BLOCK_COUNT; hashBlock++)
             {
-                // Seed HMAC with salt & block index
+                // Seed HMAC with salt & block index.
                 IncrementInteger(saltAndIndex, salt.Length);
                 byte[] hmacResult = saltAndIndex;
 
@@ -71,13 +71,13 @@ namespace PasswordUtilities
                     hashOuter.TransformFinalBlock(temp, 0, temp.Length);
                     hmacResult = hashOuter.Hash; 
 
-                    // XOR result into output buffer
-                    XorByteArray(hmacResult, 0, output, outputOffset);
+                    // XOR result into output buffer.
+                    XorByteArray(hmacResult, 0, hashOutput, hashOutputOffset);
                 }
-                outputOffset += SHA2_256_HASH_SIZE_IN_BYTES;
+                hashOutputOffset += SHA2_256_HASH_SIZE_IN_BYTES;
             }
             byte[] result = new byte[SHA2_256_HASH_SIZE_IN_BYTES];
-            Array.Copy(output, 0, result, 0, SHA2_256_HASH_SIZE_IN_BYTES);
+            Array.Copy(hashOutput, 0, result, 0, SHA2_256_HASH_SIZE_IN_BYTES);
             return result;
         }
 

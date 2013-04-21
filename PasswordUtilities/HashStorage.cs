@@ -242,21 +242,21 @@ namespace PasswordUtilities
             }
 
             // Hash algorithm must be within storage enumeration range.
-            if (hashAlgorithm == HashAlgorithm.Sha1_160.ToString())
+            if (hashAlgorithm == HashAlgorithm.SHA1_160.ToString())
             {
-                return HashAlgorithm.Sha1_160;
+                return HashAlgorithm.SHA1_160;
             }
-            else if (hashAlgorithm == HashAlgorithm.Sha2_256.ToString())
+            else if (hashAlgorithm == HashAlgorithm.SHA2_256.ToString())
             {
-                return HashAlgorithm.Sha2_256;
+                return HashAlgorithm.SHA2_256;
             }
-            else if (hashAlgorithm == HashAlgorithm.Sha3_512.ToString())
+            else if (hashAlgorithm == HashAlgorithm.SHA3_512.ToString())
             {
-                return HashAlgorithm.Sha3_512;
+                return HashAlgorithm.SHA3_512;
             }
-            else if (hashAlgorithm == HashAlgorithm.Bcrypt_192.ToString())
+            else if (hashAlgorithm == HashAlgorithm.BCRYPT_192.ToString())
             {
-                return HashAlgorithm.Bcrypt_192;
+                return HashAlgorithm.BCRYPT_192;
             }
             else if (hashAlgorithm == HashAlgorithm.Scrypt_512.ToString())
             {

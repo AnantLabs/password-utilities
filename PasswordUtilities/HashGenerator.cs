@@ -23,7 +23,6 @@ namespace PasswordUtilities
 	/// </remarks>
 	public sealed class HashGenerator
 	{
-        private const Int32 SHA1_160_HASH_SIZE_IN_BYTES = 20;
         /// <summary>
 		/// Use the default hash policy.
 		/// </summary>
@@ -369,20 +368,18 @@ namespace PasswordUtilities
 		}
 
 		// Creates the hash using the specified password, salt, 
-        // and number of hash iterations via PBKDF2.
-		// See http://en.wikipedia.org/wiki/PBKDF2
-		// And http://msdn.microsoft.com/en-us/library/system.security.cryptography.rfc2898derivebytes%28v=VS.100%29.aspx
+        // and work factor. 
 		private static byte[] CreateSaltedHash(byte[] password, byte[] salt, Int32 workFactor, HashAlgorithm hashMethod)
 		{
             switch (hashMethod)
             {
-                case HashAlgorithm.Sha1_160:
+                case HashAlgorithm.SHA1_160:
                     return SHA1_160.CreateSaltedHash(password, salt, (Int32)Math.Pow(2, workFactor));
-                case HashAlgorithm.Sha2_256:
+                case HashAlgorithm.SHA2_256:
                     return SHA2_256.CreateSaltedHash(password, salt, (Int32)Math.Pow(2, workFactor));
-                case HashAlgorithm.Sha3_512:
+                case HashAlgorithm.SHA3_512:
                     throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "SHA3-512 not implemented yet"));
-                case HashAlgorithm.Bcrypt_192:
+                case HashAlgorithm.BCRYPT_192:
                     throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "BCRYPT-192 not implemented yet"));
                 case HashAlgorithm.Scrypt_512:
                     throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "SCRYPT-512 not implemented yet"));

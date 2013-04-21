@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Globalization;
 
 using PasswordUtilities;
 
@@ -20,9 +21,9 @@ namespace PasswordUtilitiesTester
         private const string COLUMN_NAME_TITLE = "Title";
         private const string COLUMN_NAME_CHARACTERS = "Characters";
 
-        private const string SECONDS_WITH_FOUR_DECIMAL_PLACES = "0:ss\\.ffff";
-        private const string COMMAS_AND_ZERO_DECIMAL_PLACES = "0:n0";
-        private const string COMMAS_AND_TWO_DECIMAL_PLACES = "0:n2";
+        private const string SECONDS_WITH_FOUR_DECIMAL_PLACES = "{0:ss\\.ffff}";
+        private const string COMMAS_AND_ZERO_DECIMAL_PLACES = "{0:n0}";
+        private const string COMMAS_AND_TWO_DECIMAL_PLACES = "{0:n2}";
 
         public UtilitiesTester()
         {
@@ -205,6 +206,7 @@ namespace PasswordUtilitiesTester
         // Recalculate hash based on new number of hash iterations.
         private void HashIterations_ValueChanged(object sender, EventArgs e)
         {
+            this.lblIterations.Text = String.Format(COMMAS_AND_ZERO_DECIMAL_PLACES + " iterations", Math.Pow(2, (double)this.udnWorkFactor.Value));
             this.HashGen.Policy.WorkFactor = (Int32)this.udnWorkFactor.Value;
             this.GenerateNewHash();
         }
@@ -317,9 +319,9 @@ namespace PasswordUtilitiesTester
                 this.lblVerify.Text = String.Empty;
                 this.txtPasswordSymbols.Text = this.PasswordGen.Policy.AllowedSymbols;
                 this.txtPassword.Text = this.PasswordGen.GeneratePassword();
-                this.lblAttempts.Text = String.Format("Rejected passwords: {" + COMMAS_AND_ZERO_DECIMAL_PLACES + "}", this.PasswordGen.PasswordRejectedCount);
-                this.lblPasswordTime.Text = String.Format("Time: {" + SECONDS_WITH_FOUR_DECIMAL_PLACES + "}", this.PasswordGen.GenerationTime);
-                this.lblPasswordEntropy.Text = String.Format("Strength: {" + COMMAS_AND_TWO_DECIMAL_PLACES + "} bits", this.PasswordGen.PasswordEntropy);
+                this.lblAttempts.Text = String.Format("Rejected passwords: " + COMMAS_AND_ZERO_DECIMAL_PLACES, this.PasswordGen.PasswordRejectedCount);
+                this.lblPasswordTime.Text = String.Format("Time: " + SECONDS_WITH_FOUR_DECIMAL_PLACES, this.PasswordGen.GenerationTime);
+                this.lblPasswordEntropy.Text = String.Format("Strength: " + COMMAS_AND_TWO_DECIMAL_PLACES + " bits", this.PasswordGen.PasswordEntropy);
 
                 this.GenerateNewHash();
             }
@@ -332,8 +334,8 @@ namespace PasswordUtilitiesTester
                 this.HashGen.CreatePasswordSaltAndHash(this.txtPassword.Text);
                 this.txtPasswordHash.Text = this.HashGen.HashEncoded;
                 this.txtFullHash.Text = this.HashGen.StoredHash;
-                this.lblHashTime.Text = String.Format("Time: {" + SECONDS_WITH_FOUR_DECIMAL_PLACES + "}", this.HashGen.GenerationTime);
-                this.lblHashEntropy.Text = String.Format("Strength: {" + COMMAS_AND_TWO_DECIMAL_PLACES + "} bits", this.HashGen.HashEntropy);
+                this.lblHashTime.Text = String.Format("Time: " + SECONDS_WITH_FOUR_DECIMAL_PLACES, this.HashGen.GenerationTime);
+                this.lblHashEntropy.Text = String.Format("Strength: " + COMMAS_AND_TWO_DECIMAL_PLACES + " bits", this.HashGen.HashEntropy);
             }
         }
 

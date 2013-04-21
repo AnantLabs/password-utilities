@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grpPasswordPolicy = new System.Windows.Forms.GroupBox();
+            this.lblVerify = new System.Windows.Forms.Label();
             this.btnVerify = new System.Windows.Forms.Button();
             this.dgvCharacterSets = new System.Windows.Forms.DataGridView();
             this.lblPasswordEntropy = new System.Windows.Forms.Label();
@@ -57,7 +58,7 @@
             this.lblWorkFactor = new System.Windows.Forms.Label();
             this.udnWorkFactor = new System.Windows.Forms.NumericUpDown();
             this.txtPasswordHash = new System.Windows.Forms.TextBox();
-            this.lblVerify = new System.Windows.Forms.Label();
+            this.lblIterations = new System.Windows.Forms.Label();
             this.grpPasswordPolicy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCharacterSets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udnPasswordLengthMaximum)).BeginInit();
@@ -89,6 +90,14 @@
             this.grpPasswordPolicy.TabIndex = 0;
             this.grpPasswordPolicy.TabStop = false;
             this.grpPasswordPolicy.Text = "Password Policy";
+            // 
+            // lblVerify
+            // 
+            this.lblVerify.AutoSize = true;
+            this.lblVerify.Location = new System.Drawing.Point(299, 308);
+            this.lblVerify.Name = "lblVerify";
+            this.lblVerify.Size = new System.Drawing.Size(0, 13);
+            this.lblVerify.TabIndex = 23;
             // 
             // btnVerify
             // 
@@ -246,6 +255,7 @@
             // 
             // grpHashPolicy
             // 
+            this.grpHashPolicy.Controls.Add(this.lblIterations);
             this.grpHashPolicy.Controls.Add(this.lblWholeHash);
             this.grpHashPolicy.Controls.Add(this.lblHash);
             this.grpHashPolicy.Controls.Add(this.lblHashAlgo);
@@ -394,11 +404,6 @@
             0,
             0,
             0});
-            this.udnWorkFactor.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.udnWorkFactor.Name = "udnWorkFactor";
             this.udnWorkFactor.Size = new System.Drawing.Size(61, 20);
             this.udnWorkFactor.TabIndex = 0;
@@ -421,13 +426,14 @@
             this.txtPasswordHash.TabIndex = 17;
             this.txtPasswordHash.TabStop = false;
             // 
-            // lblVerify
+            // lblIterations
             // 
-            this.lblVerify.AutoSize = true;
-            this.lblVerify.Location = new System.Drawing.Point(299, 308);
-            this.lblVerify.Name = "lblVerify";
-            this.lblVerify.Size = new System.Drawing.Size(0, 13);
-            this.lblVerify.TabIndex = 23;
+            this.lblIterations.AutoSize = true;
+            this.lblIterations.Location = new System.Drawing.Point(166, 97);
+            this.lblIterations.Name = "lblIterations";
+            this.lblIterations.Size = new System.Drawing.Size(80, 13);
+            this.lblIterations.TabIndex = 22;
+            this.lblIterations.Text = "#### iterations";
             // 
             // UtilitiesTester
             // 
@@ -488,5 +494,6 @@
         private System.Windows.Forms.Label lblHash;
         private System.Windows.Forms.Button btnVerify;
         private System.Windows.Forms.Label lblVerify;
+        private System.Windows.Forms.Label lblIterations;
     }
 }
