@@ -15,7 +15,7 @@ namespace PasswordUtilities
     public sealed class PasswordPolicy
     {
         // Minimum and maximum password lengths allowed.
-        private const Int32 PASSWORD_LENGTH_MINIMUM = 4;
+        private const Int32 PASSWORD_LENGTH_MINIMUM = 0;
         private const Int32 PASSWORD_LENGTH_MAXIMUM = 200;
 
         // Values for default policy.
@@ -29,7 +29,7 @@ namespace PasswordUtilities
         private const string NUMERIC = "0123456789";
         private const string PUNCTUATION = @"!;:,.'?""";
         private const string BRACKETS = "()[]{}<>";
-        private const string ASCII_OTHER = @"|*$£-+_&=%/\^~#@";
+        private const string ASCII_OTHER = @"| *$£-+_&=%/\^~#@";
 
         // Default maximum number of password rejections allowed.
         private const Int32 DEFAULT_MAXIMUM_REJECTIONS = 100000;
@@ -49,7 +49,7 @@ namespace PasswordUtilities
         /// Constructor for creating a specific password policy.
         /// </summary>
         /// <param name="lengthMinimum">
-        /// Minimum length of password must be at least 4.
+        /// Minimum length of password must be at least 0.
         /// </param>
         /// <param name="lengthMaximum">
         /// Maximum length of password must be no more than 200.
@@ -365,9 +365,9 @@ namespace PasswordUtilities
         // Validate parameters of public methods.
         private static void ValidatePassword(string password)
         {
-            if (String.IsNullOrEmpty(password))
+            if (password == null)
             {
-                throw new ArgumentNullException("password", "Password cannot be null or empty");
+                throw new ArgumentNullException("password", "Password cannot be null");
             }
             if (password.Length < PASSWORD_LENGTH_MINIMUM)
             {
@@ -398,7 +398,7 @@ namespace PasswordUtilities
         /// </returns>
         public override string ToString()
         {
-            return String.Format(CultureInfo.InvariantCulture, "PasswordPolicy: " + this.AllowedSymbols);
+            return String.Format(CultureInfo.InvariantCulture, "PasswordPolicy: {0}", this.AllowedSymbols);
         }
     }
 }

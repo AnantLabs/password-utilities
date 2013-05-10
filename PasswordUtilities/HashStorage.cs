@@ -258,9 +258,9 @@ namespace PasswordUtilities
             {
                 return HashAlgorithm.BCRYPT_192;
             }
-            else if (hashAlgorithm == HashAlgorithm.Scrypt_512.ToString())
+            else if (hashAlgorithm == HashAlgorithm.SCRYPT_512.ToString())
             {
-                return HashAlgorithm.Scrypt_512;
+                return HashAlgorithm.SCRYPT_512;
             }
             else
             {
@@ -292,9 +292,9 @@ namespace PasswordUtilities
 
         private static byte[] ValidatePasswordSalt(byte[] passwordSalt)
         {
-            if ((passwordSalt == null) || (passwordSalt.Length == 0))
+            if (passwordSalt == null) 
             {
-                throw new ArgumentNullException("passwordSalt", String.Format(CultureInfo.InvariantCulture, "Password salt must not be null or empty!"));
+                throw new ArgumentNullException("passwordSalt", String.Format(CultureInfo.InvariantCulture, "Password salt must not be null!"));
             }
             return passwordSalt;
         }
@@ -323,16 +323,16 @@ namespace PasswordUtilities
 
             if (iterations < 1)
             {
-                throw new ArgumentOutOfRangeException("workFactor", String.Format(CultureInfo.InvariantCulture, "Hash work factor must be positive!"));
+                throw new ArgumentOutOfRangeException("workFactor", String.Format(CultureInfo.InvariantCulture, "Hash work factor must be at least zero!"));
             }
             return iterations;
         }
 
         private byte[] ValidatePasswordSaltEncoded(string passwordSaltEncoded)
         {
-            if (String.IsNullOrEmpty(passwordSaltEncoded))
+            if (passwordSaltEncoded == null)
             {
-                throw new ArgumentNullException("passwordSaltEncoded", String.Format(CultureInfo.InvariantCulture, "Encoded password salt must not be null or empty!"));
+                throw new ArgumentNullException("passwordSaltEncoded", String.Format(CultureInfo.InvariantCulture, "Encoded password salt must not be null!"));
             }
 
             switch (this.HashStorageFormat)

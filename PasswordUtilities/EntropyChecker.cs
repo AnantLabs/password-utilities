@@ -18,7 +18,7 @@ namespace PasswordUtilities
         private const string ASCII_LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
         private const string ASCII_UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private const string ASCII_NUMERIC = "0123456789";
-        private const string ASCII_OTHER = @"|£""()[]{}<>!;:,.'?*$-+_&=%/\^~#@";
+        private const string ASCII_OTHER = @"| £""()[]{}<>!;:,.'?*$-+_&=%/\^~#@";
         // This is a pure guess. If we don't know the password policy, there's no way 
 		// we can know what range of non-ASCII symbols was used to generate the password.
 		private const int NON_ASCII_LENGTH = 100;
@@ -149,8 +149,15 @@ namespace PasswordUtilities
 		public double MachinePasswordPolicyKnown(PasswordPolicy passwordPolicy, int passwordLength)
 		{
 			this.ValidateParameters(passwordPolicy, passwordLength);
-            double averageSymbolCount = AverageSymbolsPerCharacter(passwordPolicy, passwordLength);
-			this.PasswordEntropy = passwordLength * Math.Log(averageSymbolCount, 2);
+            if (passwordLength == 0)
+            {
+                this.PasswordEntropy = 0;
+            }
+            else
+            {
+                double averageSymbolCount = AverageSymbolsPerCharacter(passwordPolicy, passwordLength);
+			    this.PasswordEntropy = passwordLength * Math.Log(averageSymbolCount, 2);
+            }
 			return this.PasswordEntropy;
 		}
 
@@ -177,8 +184,15 @@ namespace PasswordUtilities
         {
             this.ValidateParameters(password);
             this.Password = password;
-            double averageSymbolCount = AverageSymbolsPerCharacter(password);
-            this.PasswordEntropy = password.Length * Math.Log(averageSymbolCount, 2);
+            if (Password.Length == 0)
+            {
+                this.PasswordEntropy = 0;
+            }
+            else
+            {
+                double averageSymbolCount = AverageSymbolsPerCharacter(password);
+                this.PasswordEntropy = password.Length * Math.Log(averageSymbolCount, 2);
+            }
             return this.PasswordEntropy;
         }
 
@@ -214,18 +228,18 @@ namespace PasswordUtilities
 			{
                 throw new ArgumentNullException("passwordPolicy", String.Format(CultureInfo.InvariantCulture, "Password policy cannot be null"));
 			}
-			if (passwordLength < 1)
+			if (passwordLength < 0)
 			{
-				throw new ArgumentOutOfRangeException("passwordLength", String.Format(CultureInfo.InvariantCulture, "Password length must be greater than zero"));
+				throw new ArgumentOutOfRangeException("passwordLength", String.Format(CultureInfo.InvariantCulture, "Password length must be at least zero"));
 			}
 		}
 
 		// Validate parameters of public methods.
 		private void ValidateParameters(string password)
 		{
-			if (String.IsNullOrEmpty(password))
+			if (password == null)
 			{
-                throw new ArgumentNullException("password", String.Format(CultureInfo.InvariantCulture, "Password cannot be null or empty"));
+                throw new ArgumentNullException("password", String.Format(CultureInfo.InvariantCulture, "Password cannot be null"));
 			}
 		}
 

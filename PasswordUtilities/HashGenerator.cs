@@ -51,7 +51,7 @@ namespace PasswordUtilities
         {
             get
             {
-                if ((this.PasswordBytes == null) || (this.PasswordBytes.Length == 0))
+                if (this.PasswordBytes == null)
                 {
                     return String.Empty;
                 }
@@ -74,7 +74,7 @@ namespace PasswordUtilities
         {
             get
             {
-                if ( (this.SaltBytes == null) || (this.SaltBytes.Length == 0) )
+                if (this.SaltBytes == null) 
                 {
                     return String.Empty;
                 }
@@ -96,7 +96,7 @@ namespace PasswordUtilities
         public byte[] HashBytes { get; private set; }
 
 		/// <summary>
-		/// Time taken to perform the password hashing.
+		/// Time taken to perform the iterated hash calculation.
 		/// </summary>
         public TimeSpan GenerationTime { get; private set; }
 
@@ -112,7 +112,7 @@ namespace PasswordUtilities
         {
             get
             {
-                if (String.IsNullOrEmpty(this.Password))
+                if (this.Password == null)
                 {
                     return String.Empty;
                 }
@@ -132,7 +132,7 @@ namespace PasswordUtilities
         {
             get
             {
-                if (String.IsNullOrEmpty(this.Salt))
+                if (this.Salt == null)
                 {
                     return String.Empty;
                 }
@@ -329,15 +329,15 @@ namespace PasswordUtilities
         // Validate specified password and salt. 
 		private static void ValidatePasswordAndSalt(byte[] password, byte[] salt)
 		{
-			// Password can't be null or empty.
-			if ( (password == null) || (password.Length == 0) )
+			// Password can't be null.
+			if (password == null)
 			{
-				throw new ArgumentNullException("password", String.Format(CultureInfo.InvariantCulture, "Password cannot be null or empty"));
+				throw new ArgumentNullException("password", String.Format(CultureInfo.InvariantCulture, "Password cannot be null"));
 			}
-            // Salt can't be null or empty.
-            if ((salt == null) || (salt.Length == 0))
+            // Salt can't be null.
+            if (salt == null) 
             {
-                throw new ArgumentNullException("salt", "Salt cannot be null or empty");
+                throw new ArgumentNullException("salt", "Salt cannot be null");
             }
         }
 
@@ -381,7 +381,7 @@ namespace PasswordUtilities
                     throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "SHA3-512 not implemented yet"));
                 case HashAlgorithm.BCRYPT_192:
                     throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "BCRYPT-192 not implemented yet"));
-                case HashAlgorithm.Scrypt_512:
+                case HashAlgorithm.SCRYPT_512:
                     throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "SCRYPT-512 not implemented yet"));
                 default:
                     throw new ArgumentOutOfRangeException(String.Format(CultureInfo.InvariantCulture, "Unknown hash algorithm"));

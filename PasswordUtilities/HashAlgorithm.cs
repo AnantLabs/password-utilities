@@ -56,6 +56,6 @@ namespace PasswordUtilities
         /// It's tweakable to be either computationally-intensive,
         /// memory-intensive, or both.
         /// </remarks>
-        Scrypt_512 = 4
+        SCRYPT_512 = 4
     }
 }

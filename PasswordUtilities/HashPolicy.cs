@@ -20,11 +20,12 @@ namespace PasswordUtilities
         // A good default is something that takes around 0.5-1.0 second 
         // to execute.
 		private const int WORK_FACTOR_DEFAULT = 14;  // 2^14 hash iterations
-        private const int WORK_FACTOR_MINIMUM = 1;
+        private const int WORK_FACTOR_MINIMUM = 0;
         private const int WORK_FACTOR_MAXIMUM = 24;
 
 		// Other class constants.
-		private const int SALT_MINIMUM_BYTES = 8;
+		private const int SALT_MINIMUM_BYTES = 0;
+        private const int SALT_MINIMUM_BYTES_SHA1 = 8;
 		private const int SALT_DEFAULT_BYTES = 10;
         private const HashAlgorithm HASH_ALGORITHM_DEFAULT = HashAlgorithm.SHA1_160; 
         private const StorageFormat HASH_STORAGE_DEFAULT = StorageFormat.Hexadecimal;
@@ -131,7 +132,25 @@ namespace PasswordUtilities
         /// <summary>
         /// Required length of salt in bytes.
         /// </summary>
-        public int NumberOfSaltBytes { get; set; }
+        public Int32 NumberOfSaltBytes { get; set; }
+
+        /// <summary>
+        /// Minimum length of salt in bytes.
+        /// </summary>
+        public Int32 MinimumNumberOfSaltBytes
+        {
+            get
+            {
+                if (this.HashMethod == HashAlgorithm.SHA1_160)
+                {
+                    return SALT_MINIMUM_BYTES_SHA1;
+                }
+                else
+                {
+                    return SALT_MINIMUM_BYTES;
+                }
+            }
+        }
 
 		// Validates this policy.  
 		private void ValidatePolicy()
@@ -150,7 +169,7 @@ namespace PasswordUtilities
                     throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "SHA3-512 not implemented yet"));
                 case HashAlgorithm.BCRYPT_192:
                     throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "BCRYPT-192 not implemented yet"));
-                case HashAlgorithm.Scrypt_512:
+                case HashAlgorithm.SCRYPT_512:
                     throw new NotImplementedException(String.Format(CultureInfo.InvariantCulture, "SCRYPT-512 not implemented yet"));
                 default:
                     throw new ArgumentOutOfRangeException(String.Format(CultureInfo.InvariantCulture, "Unknown hash algorithm"));
@@ -168,11 +187,22 @@ namespace PasswordUtilities
                 throw new ArgumentOutOfRangeException("workFactor", String.Format(CultureInfo.InvariantCulture, "Work factor must be less than {0}, not {1}", WORK_FACTOR_MAXIMUM, this.WorkFactor.ToString(COMMAS_AND_ZERO_DECIMAL_PLACES, CultureInfo.InvariantCulture)));
             }
 
-			// Recommended salt length nowadays is at least 64 bits.
-			if (this.NumberOfSaltBytes < SALT_MINIMUM_BYTES)
-			{
-                throw new ArgumentOutOfRangeException("numberOfSaltBytes", String.Format(CultureInfo.InvariantCulture, "Must have at least {0} salt bytes: not {1}", SALT_MINIMUM_BYTES, this.NumberOfSaltBytes.ToString(COMMAS_AND_ZERO_DECIMAL_PLACES, CultureInfo.InvariantCulture)));
-			}
+            // The .NET implemention of HMAC-SHA1-PKDBF2 insists on a minimum of 64 bits!
+            if (this.HashMethod == HashAlgorithm.SHA1_160)
+            {
+                if (this.NumberOfSaltBytes < SALT_MINIMUM_BYTES_SHA1)
+                {
+                    throw new ArgumentOutOfRangeException("numberOfSaltBytes", String.Format(CultureInfo.InvariantCulture, "Must have at least {0} salt bytes to use SHA1: not {1}", SALT_MINIMUM_BYTES_SHA1, this.NumberOfSaltBytes.ToString(COMMAS_AND_ZERO_DECIMAL_PLACES, CultureInfo.InvariantCulture)));
+                }
+            }
+            // Recommended salt length nowadays is at least 64 bits.
+            else
+            {
+                if (this.NumberOfSaltBytes < SALT_MINIMUM_BYTES)
+                {
+                    throw new ArgumentOutOfRangeException("numberOfSaltBytes", String.Format(CultureInfo.InvariantCulture, "Must have at least {0} salt bytes: not {1}", SALT_MINIMUM_BYTES, this.NumberOfSaltBytes.ToString(COMMAS_AND_ZERO_DECIMAL_PLACES, CultureInfo.InvariantCulture)));
+                }
+            }
 
             // Storage format must be within enumeration range.
             // Not using Enum.IsDefined for this validation check because 

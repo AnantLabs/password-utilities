@@ -44,6 +44,7 @@
             this.udnPasswordLengthMaximum = new System.Windows.Forms.NumericUpDown();
             this.udnPasswordLengthMinimum = new System.Windows.Forms.NumericUpDown();
             this.grpHashPolicy = new System.Windows.Forms.GroupBox();
+            this.lblIterations = new System.Windows.Forms.Label();
             this.lblWholeHash = new System.Windows.Forms.Label();
             this.lblHash = new System.Windows.Forms.Label();
             this.lblHashAlgo = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@
             this.lblWorkFactor = new System.Windows.Forms.Label();
             this.udnWorkFactor = new System.Windows.Forms.NumericUpDown();
             this.txtPasswordHash = new System.Windows.Forms.TextBox();
-            this.lblIterations = new System.Windows.Forms.Label();
             this.grpPasswordPolicy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCharacterSets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udnPasswordLengthMaximum)).BeginInit();
@@ -86,7 +86,7 @@
             this.grpPasswordPolicy.Controls.Add(this.udnPasswordLengthMinimum);
             this.grpPasswordPolicy.Location = new System.Drawing.Point(12, 12);
             this.grpPasswordPolicy.Name = "grpPasswordPolicy";
-            this.grpPasswordPolicy.Size = new System.Drawing.Size(565, 457);
+            this.grpPasswordPolicy.Size = new System.Drawing.Size(494, 430);
             this.grpPasswordPolicy.TabIndex = 0;
             this.grpPasswordPolicy.TabStop = false;
             this.grpPasswordPolicy.Text = "Password Policy";
@@ -114,7 +114,7 @@
             this.dgvCharacterSets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCharacterSets.Location = new System.Drawing.Point(13, 53);
             this.dgvCharacterSets.Name = "dgvCharacterSets";
-            this.dgvCharacterSets.Size = new System.Drawing.Size(534, 147);
+            this.dgvCharacterSets.Size = new System.Drawing.Size(465, 147);
             this.dgvCharacterSets.TabIndex = 16;
             this.dgvCharacterSets.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCharacterSets_CellValueChanged);
             this.dgvCharacterSets.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvCharacterSets_CurrentCellDirtyStateChanged);
@@ -149,7 +149,7 @@
             // lblAllowedSymbols
             // 
             this.lblAllowedSymbols.AutoSize = true;
-            this.lblAllowedSymbols.Location = new System.Drawing.Point(13, 217);
+            this.lblAllowedSymbols.Location = new System.Drawing.Point(13, 211);
             this.lblAllowedSymbols.Name = "lblAllowedSymbols";
             this.lblAllowedSymbols.Size = new System.Drawing.Size(86, 13);
             this.lblAllowedSymbols.TabIndex = 12;
@@ -169,11 +169,11 @@
             // 
             this.txtPassword.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.txtPassword.Font = new System.Drawing.Font("Lucida Console", 9F);
-            this.txtPassword.Location = new System.Drawing.Point(15, 334);
+            this.txtPassword.Location = new System.Drawing.Point(13, 332);
             this.txtPassword.Multiline = true;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.ReadOnly = true;
-            this.txtPassword.Size = new System.Drawing.Size(532, 66);
+            this.txtPassword.Size = new System.Drawing.Size(469, 66);
             this.txtPassword.TabIndex = 10;
             this.txtPassword.TabStop = false;
             // 
@@ -181,11 +181,11 @@
             // 
             this.txtPasswordSymbols.CausesValidation = false;
             this.txtPasswordSymbols.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPasswordSymbols.Location = new System.Drawing.Point(15, 240);
+            this.txtPasswordSymbols.Location = new System.Drawing.Point(13, 233);
             this.txtPasswordSymbols.Multiline = true;
             this.txtPasswordSymbols.Name = "txtPasswordSymbols";
             this.txtPasswordSymbols.ReadOnly = true;
-            this.txtPasswordSymbols.Size = new System.Drawing.Size(528, 49);
+            this.txtPasswordSymbols.Size = new System.Drawing.Size(465, 49);
             this.txtPasswordSymbols.TabIndex = 9;
             this.txtPasswordSymbols.TabStop = false;
             // 
@@ -215,11 +215,6 @@
             0,
             0,
             0});
-            this.udnPasswordLengthMaximum.Minimum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
             this.udnPasswordLengthMaximum.Name = "udnPasswordLengthMaximum";
             this.udnPasswordLengthMaximum.Size = new System.Drawing.Size(40, 20);
             this.udnPasswordLengthMaximum.TabIndex = 1;
@@ -235,11 +230,6 @@
             this.udnPasswordLengthMinimum.Location = new System.Drawing.Point(95, 26);
             this.udnPasswordLengthMinimum.Maximum = new decimal(new int[] {
             200,
-            0,
-            0,
-            0});
-            this.udnPasswordLengthMinimum.Minimum = new decimal(new int[] {
-            4,
             0,
             0,
             0});
@@ -269,26 +259,35 @@
             this.grpHashPolicy.Controls.Add(this.lblStorageFormat);
             this.grpHashPolicy.Controls.Add(this.lblWorkFactor);
             this.grpHashPolicy.Controls.Add(this.udnWorkFactor);
-            this.grpHashPolicy.Location = new System.Drawing.Point(599, 13);
+            this.grpHashPolicy.Location = new System.Drawing.Point(511, 13);
             this.grpHashPolicy.Name = "grpHashPolicy";
-            this.grpHashPolicy.Size = new System.Drawing.Size(324, 456);
+            this.grpHashPolicy.Size = new System.Drawing.Size(257, 429);
             this.grpHashPolicy.TabIndex = 1;
             this.grpHashPolicy.TabStop = false;
             this.grpHashPolicy.Text = "Hash Policy";
             // 
+            // lblIterations
+            // 
+            this.lblIterations.AutoSize = true;
+            this.lblIterations.Location = new System.Drawing.Point(154, 97);
+            this.lblIterations.Name = "lblIterations";
+            this.lblIterations.Size = new System.Drawing.Size(80, 13);
+            this.lblIterations.TabIndex = 22;
+            this.lblIterations.Text = "#### iterations";
+            // 
             // lblWholeHash
             // 
             this.lblWholeHash.AutoSize = true;
-            this.lblWholeHash.Location = new System.Drawing.Point(10, 310);
+            this.lblWholeHash.Location = new System.Drawing.Point(15, 310);
             this.lblWholeHash.Name = "lblWholeHash";
-            this.lblWholeHash.Size = new System.Drawing.Size(284, 13);
+            this.lblWholeHash.Size = new System.Drawing.Size(198, 13);
             this.lblWholeHash.TabIndex = 21;
-            this.lblWholeHash.Text = "Algorithm.Storage.WorkFactor.EncodedSalt.EncodedHash";
+            this.lblWholeHash.Text = "Algorithm.Storage.WorkFactor.Salt.Hash";
             // 
             // lblHash
             // 
             this.lblHash.AutoSize = true;
-            this.lblHash.Location = new System.Drawing.Point(10, 216);
+            this.lblHash.Location = new System.Drawing.Point(10, 209);
             this.lblHash.Name = "lblHash";
             this.lblHash.Size = new System.Drawing.Size(124, 13);
             this.lblHash.TabIndex = 17;
@@ -306,16 +305,16 @@
             // cmbHashMethod
             // 
             this.cmbHashMethod.FormattingEnabled = true;
-            this.cmbHashMethod.Location = new System.Drawing.Point(94, 20);
+            this.cmbHashMethod.Location = new System.Drawing.Point(86, 20);
             this.cmbHashMethod.Name = "cmbHashMethod";
-            this.cmbHashMethod.Size = new System.Drawing.Size(121, 21);
+            this.cmbHashMethod.Size = new System.Drawing.Size(94, 21);
             this.cmbHashMethod.TabIndex = 19;
             this.cmbHashMethod.SelectedIndexChanged += new System.EventHandler(this.HashAlgo_SelectedIndexChanged);
             // 
             // lblHashEntropy
             // 
             this.lblHashEntropy.AutoSize = true;
-            this.lblHashEntropy.Location = new System.Drawing.Point(212, 402);
+            this.lblHashEntropy.Location = new System.Drawing.Point(131, 404);
             this.lblHashEntropy.Name = "lblHashEntropy";
             this.lblHashEntropy.Size = new System.Drawing.Size(89, 13);
             this.lblHashEntropy.TabIndex = 17;
@@ -324,7 +323,7 @@
             // lblHashTime
             // 
             this.lblHashTime.AutoSize = true;
-            this.lblHashTime.Location = new System.Drawing.Point(124, 402);
+            this.lblHashTime.Location = new System.Drawing.Point(43, 404);
             this.lblHashTime.Name = "lblHashTime";
             this.lblHashTime.Size = new System.Drawing.Size(67, 13);
             this.lblHashTime.TabIndex = 17;
@@ -347,18 +346,13 @@
             this.txtFullHash.Multiline = true;
             this.txtFullHash.Name = "txtFullHash";
             this.txtFullHash.ReadOnly = true;
-            this.txtFullHash.Size = new System.Drawing.Size(295, 66);
+            this.txtFullHash.Size = new System.Drawing.Size(221, 66);
             this.txtFullHash.TabIndex = 17;
             this.txtFullHash.TabStop = false;
             // 
             // udnSaltBytes
             // 
-            this.udnSaltBytes.Location = new System.Drawing.Point(95, 130);
-            this.udnSaltBytes.Minimum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
+            this.udnSaltBytes.Location = new System.Drawing.Point(87, 130);
             this.udnSaltBytes.Name = "udnSaltBytes";
             this.udnSaltBytes.Size = new System.Drawing.Size(61, 20);
             this.udnSaltBytes.TabIndex = 6;
@@ -372,9 +366,9 @@
             // cmbStorageFormat
             // 
             this.cmbStorageFormat.FormattingEnabled = true;
-            this.cmbStorageFormat.Location = new System.Drawing.Point(94, 57);
+            this.cmbStorageFormat.Location = new System.Drawing.Point(86, 57);
             this.cmbStorageFormat.Name = "cmbStorageFormat";
-            this.cmbStorageFormat.Size = new System.Drawing.Size(121, 21);
+            this.cmbStorageFormat.Size = new System.Drawing.Size(94, 21);
             this.cmbStorageFormat.TabIndex = 3;
             this.cmbStorageFormat.SelectedIndexChanged += new System.EventHandler(this.StorageFormat_SelectedIndexChanged);
             // 
@@ -398,7 +392,7 @@
             // 
             // udnWorkFactor
             // 
-            this.udnWorkFactor.Location = new System.Drawing.Point(95, 93);
+            this.udnWorkFactor.Location = new System.Drawing.Point(87, 93);
             this.udnWorkFactor.Maximum = new decimal(new int[] {
             24,
             0,
@@ -418,28 +412,19 @@
             // 
             this.txtPasswordHash.CausesValidation = false;
             this.txtPasswordHash.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPasswordHash.Location = new System.Drawing.Point(612, 252);
+            this.txtPasswordHash.Location = new System.Drawing.Point(524, 245);
             this.txtPasswordHash.Multiline = true;
             this.txtPasswordHash.Name = "txtPasswordHash";
             this.txtPasswordHash.ReadOnly = true;
-            this.txtPasswordHash.Size = new System.Drawing.Size(295, 49);
+            this.txtPasswordHash.Size = new System.Drawing.Size(221, 49);
             this.txtPasswordHash.TabIndex = 17;
             this.txtPasswordHash.TabStop = false;
-            // 
-            // lblIterations
-            // 
-            this.lblIterations.AutoSize = true;
-            this.lblIterations.Location = new System.Drawing.Point(166, 97);
-            this.lblIterations.Name = "lblIterations";
-            this.lblIterations.Size = new System.Drawing.Size(80, 13);
-            this.lblIterations.TabIndex = 22;
-            this.lblIterations.Text = "#### iterations";
             // 
             // UtilitiesTester
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(954, 481);
+            this.ClientSize = new System.Drawing.Size(785, 461);
             this.Controls.Add(this.txtPasswordHash);
             this.Controls.Add(this.grpHashPolicy);
             this.Controls.Add(this.grpPasswordPolicy);

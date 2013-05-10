@@ -17,7 +17,7 @@ namespace PasswordUtilitiesTester
     {
         private const string COLUMN_NAME_KEY = "Key";
         private const string COLUMN_NAME_ALLOWED = "Allowed";
-        private const string COLUMN_NAME_MINIMUM_NUMBER_OF_CHARACTERS = "Minimum";
+        private const string COLUMN_NAME_MINIMUM_NUMBER_OF_CHARACTERS = "Min";
         private const string COLUMN_NAME_TITLE = "Title";
         private const string COLUMN_NAME_CHARACTERS = "Characters";
 
@@ -95,7 +95,7 @@ namespace PasswordUtilitiesTester
             this.dgvCharacterSets.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             this.dgvCharacterSets.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             this.dgvCharacterSets.GridColor = Color.Black;
-            this.dgvCharacterSets.RowHeadersVisible = true;
+            this.dgvCharacterSets.RowHeadersVisible = false;
 
             this.dgvCharacterSets.ColumnCount = 4;
 
@@ -222,6 +222,14 @@ namespace PasswordUtilitiesTester
         private void HashAlgo_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.HashGen.Policy.HashMethod = (HashAlgorithm)Enum.Parse(typeof(HashAlgorithm), this.cmbHashMethod.SelectedItem.ToString());
+            if (this.udnSaltBytes.Minimum != this.HashGen.Policy.MinimumNumberOfSaltBytes)
+            {
+                if (this.udnSaltBytes.Value < this.HashGen.Policy.MinimumNumberOfSaltBytes)
+                {
+                    this.udnSaltBytes.Value = this.HashGen.Policy.MinimumNumberOfSaltBytes;
+                }
+                this.udnSaltBytes.Minimum = this.HashGen.Policy.MinimumNumberOfSaltBytes;
+            }
             this.GenerateNewHash();
         }
 
