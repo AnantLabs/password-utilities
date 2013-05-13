@@ -1,0 +1,16 @@
+1.3.1
+Added ReadMe.txt.
+Added this change log.
+Added a TL,DR section to the license.
+
+1.3
+Primarily enables zero-length password and zero-length salt.
+
+1.2
+Change log didn't exist at this time - please look at commit comments.
+
+1.1
+Change log didn't exist at this time - please look at commit comments.
+
+1.0
+Change log didn't exist at this time - please look at commit comments.
