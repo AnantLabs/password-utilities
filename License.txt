@@ -1,3 +1,6 @@
+TL;DR: Very liberal. Basically, you can do whatever you want as long as you include the original copyright.
+===========================================================================================================
+
 The MIT License (MIT)
 
 Copyright (c) 2013 Mark Pearce
